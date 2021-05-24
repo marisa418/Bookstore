@@ -1,0 +1,35 @@
+body{
+    background: rgb(255, 255, 255);
+}
+.container{
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#homemenu{
+font-style: italic;
+font-size: 20px;
+color: black;
+}
+
+.col-left{
+    width: 500px;
+        margin: 0 auto;
+}
+#ro1{
+    display: inline-block;
+    border: solid 1px rgb(55, 13, 243);
+    margin-left: 0;
+    margin-right: auto;
+}
+#ro2{
+    display: inline-block;
+    border: solid 1px rgb(255, 0, 0);
+}
+td{
+    font-size: 15px;
+}
+.images{
+    
+}

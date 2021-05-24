@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/head.css">
+    
+
+  </head>
+<body>
+  <div >
+    <div id="bar1">
+        <h1><a class="nav-link" href="/" >  Book Store </a></h1>
+  </div>
+  <div id="bar2">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(229, 198, 250)">
+        <div class="container-fluid">
+ 
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" > <span style="display:inline-block; width: 100px;"></span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/catalog" > <font color="#660066">รายการหนังสือ</font></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" ><span style="display:inline-block; width: 140px;"></span><font color="#660066">ค้นหา</font></a>
+              </li>
+              <form class="d-flex" >
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <span style="display:inline-block; width: 200px;"></span>
+            <% if(!currentUser) {%>
+            <div class="login">
+              <li class="nav-item">
+                <a class="nav-link" href="/login" > <font color="#660066" class="dropbtn ">Login</font></a>
+              </li>
+              </div>
+              <li class="nav-item">
+              <a class="nav-link" href="/register" > <font color="#660066" class="regis">Register</font></a>
+            </li>
+            <% } else { %>
+             <div class="dropdown">
+              <li class="nav-item">
+                <a class="nav-link" href="/" > <font color="#660066" class="name"><%= currentUser.username %></font></a>
+              </li>
+              <div class="dropdown-content">
+              <a href="#">ข้อมูลส่วนตัว</a>
+              <a href="#">ตะกร้าสิ้นค้า</a>
+              <a href="/catalog/new">เพิ่มสินค้า</a>
+              <a href="/logout">Logout</a>
+              </div>
+            </div>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout" > <font color="#660066" class="logout">Logout</font></a>
+            </li>
+            <% } %> 
+            
+            
+            </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+  </div>
+    
+  </div>
+  
+</body>
+</html>
