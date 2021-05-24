@@ -128,6 +128,21 @@ router.get("/:id", function(req, res){
     });
 });
 
+router.post('/', isLoggedIn, function(req, res){
+    catalog.findById(req.params.id)
+    var id_book = {id_book: req.catalog._id}
+    var buyer = {buyer: req.user._id}
+
+    var newcart= {buyer:buyer,id_book:id_book};
+    cart.create(newcart, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        } else{
+            res.redirect('/user/cart');
+        }
+    });
+});
+
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();

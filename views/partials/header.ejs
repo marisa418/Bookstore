@@ -34,6 +34,7 @@
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+           
             <span style="display:inline-block; width: 200px;"></span>
             <% if(!currentUser) {%>
             <div class="login">
@@ -50,8 +51,8 @@
                 <a class="nav-link" href="/" > <font color="#660066" class="name"><%= currentUser.username %></font></a>
               </li>
               <div class="dropdown-content">
-              <a href="#">ข้อมูลส่วนตัว</a>
-              <a href="#">ตะกร้าสิ้นค้า</a>
+              <a href="/user">ข้อมูลส่วนตัว</a>
+              <a href="/user/cart">ตะกร้าสิ้นค้า</a>
               <a href="/catalog/new">เพิ่มสินค้า</a>
               <a href="/logout">Logout</a>
               </div>

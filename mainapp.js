@@ -7,6 +7,7 @@ const        User            = require('./models/user');
 const        bodyParser      = require('body-parser');
 var          catalogRoutes   = require('./routes/catalog');
 var          indexRoutes     = require('./routes/index');
+var          userRoutes     = require('./routes/user');
 
 
 mongoose.connect('mongodb://localhost/BookStore',{useNewUrlParser: true, useUnifiedTopology: true});
@@ -32,6 +33,7 @@ app.use(function(req,res,next){
 
 app.use('/public', express.static('public'));
 app.use('/catalog',catalogRoutes)
+app.use('/user',userRoutes)
 app.use('/',indexRoutes )
 
 
