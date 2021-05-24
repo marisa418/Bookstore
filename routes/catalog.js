@@ -15,31 +15,85 @@ const   express = require('express'),
         
 
 router.get('/comedy',function(req,res){
-    res.render('comedy.ejs');
+    catalog.find({type:'comedy'}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('comedy.ejs', {catalog: allCollections});
+        }
+    });
 });
 router.get('/action',function(req,res){
-    res.render('action.ejs');
+    catalog.find({type:'action'}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('action.ejs', {catalog: allCollections});
+        }
+    });
 });
 router.get('/romance',function(req,res){
-    res.render('romance.ejs');
+    catalog.find({type:'romance'}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('romance.ejs', {catalog: allCollections});
+        }
+    });
 });
 router.get('/boylove',function(req,res){
-    res.render('boylove.ejs');
+    catalog.find({type:'boylove'}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('boylove.ejs', {catalog: allCollections});
+        }
+    });
 });
 router.get('/scifi',function(req,res){
-    res.render('scifi.ejs');
+    catalog.find({type:'scifi'}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('scifi.ejs', {catalog: allCollections});
+        }
+    });
 });
 router.get('/fantasy',function(req,res){
-    res.render('fantasy.ejs');
+    catalog.find({type:'fantasy'}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('fantasy.ejs', {catalog: allCollections});
+        }
+    });
 });
 router.get('/thriller',function(req,res){
-    res.render('thriller.ejs');
+    catalog.find({type:'thriller'}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('thriller.ejs', {catalog: allCollections});
+        }
+    });
 });
 router.get('/suspense',function(req,res){
-    res.render('suspense.ejs');
+    catalog.find({type:'suspense'}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('suspense.ejs', {catalog: allCollections});
+        }
+    });
 });
 router.get('/historical',function(req,res){
-    res.render('historical.ejs');
+    catalog.find({type:'historical'}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('historical.ejs', {catalog: allCollections});
+        }
+    });
 });
 router.get('/new',isLoggedIn,function(req,res){
     res.render('new.ejs');
@@ -74,18 +128,12 @@ router.get("/:id", function(req, res){
     });
 });
 
-Bookstore('catalog')
-.find().toArray( (error, results) => {
-    if(error) {
-        throw error
-    }   
-    res.json(results)
-})
-
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
     res.redirect('/login');
 }
+
+
 module.exports = router;
