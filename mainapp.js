@@ -30,7 +30,7 @@ app.use(function(req,res,next){
     res.locals.currentUser = req.user;
     next();
 });
-
+app.use(express.static('./public'));
 app.use('/public', express.static('public'));
 app.use('/catalog',catalogRoutes)
 app.use('/user',userRoutes)

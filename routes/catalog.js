@@ -1,19 +1,35 @@
 const   express = require('express'),
-        router  = express.Router();
+        router  = express.Router(),    
+        multer = require('multer'),
+        path = require('path'),
+        storge = multer.diskStorage({
+            destination:function(req,file,callback){
+                callback(null,'./public/uploads/');
+            },
+            filename:function(req,file,callback){
+                callback(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+            }
+        }),
+        imageFilter = function(req,file,callback){
+            if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)){
+                return callback(new Error('Only JPG, jpeg, PNG and GIF image files'),false);
+            }
+            callback(null, true);
+        },
+        upload = multer({storage:storge,fileFilter:imageFilter}),
         catalog  = require('../models/catalog');
     
 
-    router.get('/', function(req, res){
-        catalog.find({}, function(err, allCollections){
-            if(err){
-                console.log(err);
-            } else {
-                res.render('catalog.ejs', {catalog: allCollections});
-            }
-        });
+router.get('/', function(req, res){
+    catalog.find({}, function(err, allCollections){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('catalog.ejs', {catalog: allCollections});
+        }
     });
+});
         
-
 router.get('/comedy',function(req,res){
     catalog.find({type:'comedy'}, function(err, allCollections){
         if(err){
@@ -99,17 +115,14 @@ router.get('/new',isLoggedIn,function(req,res){
     res.render('new.ejs');
 });
 
-router.post('/', isLoggedIn, function(req, res){
-    var name = req.body.name;
-    var image = req.body.image;
-    var desc = req.body.desc;
-    var type = req.body.type;
-    var author = {
+router.post('/', isLoggedIn,upload.single('image'), function(req, res){
+    req.body.catalog.image = '/uploads/'+ req.file.filename;
+    req.body.catalog.author = {
         id: req.user._id,
         username: req.user.username
     };
-    var newcatalog = {name:name, image:image, desc: desc,type: type, author: author};
-    catalog.create(newcatalog, function(err, newlyCreated){
+    //var newcatalog = {name:name, image:image, desc: desc,type: type, author: author};
+    catalog.create(req.body.catalog,function(err, newlyCreated){
         if(err){
             console.log(err);
         } else{
