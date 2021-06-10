@@ -16,7 +16,12 @@ router.get('/register',function(req,res){
 });
 
 router.post('/register', function(req, res){
-    var newUser = new User({username: req.body.username});
+    var newUser = new User({username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        gender: req.body.gender});
     User.register(newUser, req.body.password, function(err, user){
         if(err) {
             console.log(err);

@@ -111,13 +111,15 @@ router.get('/historical',function(req,res){
         }
     });
 });
+
+
 router.get('/new',isLoggedIn,function(req,res){
     res.render('new.ejs');
 });
 
 router.post('/', isLoggedIn,upload.single('image'), function(req, res){
     req.body.catalog.image = '/uploads/'+ req.file.filename;
-    req.body.catalog.author = {
+    req.body.catalog.seller = {
         id: req.user._id,
         username: req.user.username
     };
@@ -136,22 +138,8 @@ router.get("/:id", function(req, res){
         if(err){
             console.log(err);
         } else {
+            
             res.render("show.ejs", {catalog: foundcatalog});
-        }
-    });
-});
-
-router.post('/', isLoggedIn, function(req, res){
-    catalog.findById(req.params.id)
-    var id_book = {id_book: req.catalog._id}
-    var buyer = {buyer: req.user._id}
-
-    var newcart= {buyer:buyer,id_book:id_book};
-    cart.create(newcart, function(err, newlyCreated){
-        if(err){
-            console.log(err);
-        } else{
-            res.redirect('/user/cart');
         }
     });
 });
@@ -162,6 +150,7 @@ function isLoggedIn(req, res, next){
     }
     res.redirect('/login');
 }
+
 
 
 module.exports = router;

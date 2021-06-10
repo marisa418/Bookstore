@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <link rel="stylesheet" href="/public/catalog.css">
+</head>
+<body>
+  
+    <div class="images">
+        <div class="album py-5 bg-light" >
+            <div class="container">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <% catalog.forEach(function(catalog){  %>
+                <div class="col-xl-3 col-sm-12">
+                  <div class="card shadow-sm">
+                      <div>
+                    <a href="/catalog/<%= catalog._id %>"><img src='<%= catalog.image %>' class='card-img-top' width="200px" height="250px"></a>
+                     </div>
+                    <div class="card-body">
+                        <div class="sizeimage">
+                          <a href="/catalog/<%= catalog._id %>"><h6 class = 'card-title' ><%= catalog.name %></h6> </a>
+                      </div>
+                      <div class="sizeimage">
+                      <p class="card-text">หมวดหมู่: <%= catalog.type %></p>
+                    </div>
+                    <input type='text' class="hidden" name='id_book'  value= <%= catalog.id %> >
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="sizeimage">
+                        
+                        <div class="btn-group">
+                          <button id="addcart" type="submit" >ใส่ตระกร้า</button>
+                        </div>
+                     
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }); %>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+</body>
+</html>
+
+
+

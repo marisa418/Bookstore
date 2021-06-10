@@ -18,11 +18,25 @@
 <div class="col-sm-8" id="show_text">
     <div class="im">
     <h3><%=catalog.name%></h3>     
-    <p>ผู้ขาย <%= catalog.author.username %></p>
+    <p>ผู้ขาย <%= catalog.seller.username %></p>
     <span style="display:inline-block; height: 40px;"></span>
+    <p>ราคา <%= catalog.price%> บาท.</p>
+    <form action='/cart' method='POST' >
+        
+        <input type='text' class="hidden" name='id_book' value= <%= catalog.id %> >
+        
+        <div class="btn-group">
+          <button id="addcart" type="submit" >ใส่ตระกร้า</button>
+        </div>
+    </form>  
+        
+      
     <div>
         <label  class="form-label">คำโปรย</label>   
     <p><%= catalog.desc %></p>
+    
+
+  
 </div>
 </div>
 </div>

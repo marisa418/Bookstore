@@ -10,19 +10,47 @@
     <%- include('partials/head.ejs') %>
     <div class='container'>
         <form action='/catalog' method='POST' enctype="multipart/form-data">
-            <div class="mb-3">
+            <div class="mb-1">
+              <div class="col-md-10">
               <label class="form-label">ชื่อสินค้า</label>
               <input type="text" class="form-control" name='catalog[name]' placeholder='Name'>
+             </div>
             </div>
-            <div class="mb-3">
-              <label  class="form-label">Image URL</label>
-              <input type="file" class="form-control" name='image' accept="image/*">
+            <div class="mb-1">
+              <div class="col-md-10">
+                <label  class="form-label">รูปภาพ</label>
+                <input type='file' class="form-control" name='image' accept="image/*"> 
+              </div>
             </div>
-            <div class="mb-3">
-              <label  class="form-label">คำอธิบาย</label>
-              <input type="text" class="form-control" name='catalog[desc]' placeholder='Description of your collection.'>
-            </div>
-            <div class="mb-3">
+            <div class="mb-1">
+            <div class="row">
+              <div class="col-sm-5">
+                  <label class="form-label">ผู้แต่ง</label>
+                  <input type='text'class="form-control"  name='catalog[author]' id="price" >
+              </div>  
+
+              <div class="col-sm-5">
+                  <label class="form-label">สำนักพิมพ์</label>
+                  <input type='text' class="form-control" name='catalog[publishing]' id="number">
+              </div>              
+          </div>
+        </div>
+        <div class="mb-1">
+            <div class="row">
+              <div class="col-sm-5">
+                  <label class="form-label">ราคา</label>
+                  <input type='text'class="form-control"  name='catalog[price]' id="price" >
+              </div>  
+
+              <div class="col-sm-5">
+                  <label class="form-label">จำนวนเล่ม</label>
+                  <input type='text' class="form-control" name='catalog[number]' id="number">
+              </div>              
+          </div>
+        </div>
+            
+            <div class="mb-1">
+              <div class="col-md-10">
             <label  class="form-label">โปรดเลือกประเภทของหนังสือ</label>
             <select class="form-select" aria-label="Default select example" name='catalog[type]'>
                 <option value="comedy">นิยายตลกขบขัน</option>
@@ -36,10 +64,18 @@
                 <option value="historical">นิยายอิงประวัติศาสตร์</option>
               </select>
             </div>
+            </div>
+            <div class="mb-1">
+              <div class="col-md-10" id="Desc">
+              <label  class="form-label">คำอธิบาย</label>
+              <input type="text" class="form-control" name='catalog[desc]' placeholder='Description of your collection.'>
+            </div>
+            <div class="mb-3">
+          </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a href='/catalog'>Go back</a>
           </form>
         </div>
+      </div>
     <%- include('partials/footer.ejs') %>
 
 </body>

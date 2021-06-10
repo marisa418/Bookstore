@@ -3,9 +3,13 @@ var mongoose = require('mongoose');
 var catalogSchema = new mongoose.Schema({
     name: String,
     image: String,
+    price: String,
+    number: String,
+    author: String,
+    publishing:String,
     desc: String,
     type: String,
-    author: {
+    seller: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'

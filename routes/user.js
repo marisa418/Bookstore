@@ -8,7 +8,4 @@ router.get('/', function(req, res){
 });
         
 
-router.get('/cart',function(req,res){
-            res.render('cart.ejs');
-});
 module.exports = router;
