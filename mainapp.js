@@ -2,6 +2,7 @@ const        express         = require('express');
 const        app             = express();
 const        mongoose        = require('mongoose');
 const        passport        = require('passport');
+const        methodOverride   = require('method-override');
 const        LocalStrategy   = require('passport-local');
 const        User            = require('./models/user');
 const        bodyParser      = require('body-parser');
@@ -31,6 +32,7 @@ app.use(function(req,res,next){
     res.locals.currentUser = req.user;
     next();
 });
+app.use(methodOverride('_method'));
 app.use(express.static('./public'));
 app.use('/public', express.static('public'));
 app.use('/catalog',catalogRoutes)

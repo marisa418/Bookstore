@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body> 
+                <% cart.forEach(function(cart){  %>
+                    <% catalog.forEach(function(catalog){  %>
+                        <% if ( catalog.id ==  cart.id_book ){ %>  
+                          <div class="container ">
+                            <div class="row mb-1 catr" >
+                              <div class="col-sm-3 " >
+                                <img src="<%= catalog.image %>" width="100px">
+                              </div>
+                              <div class="col-sm-7">
+                                <h5 class="mb-1"><%= catalog.name %></h5>
+                                <p class="mb-15">ผู้ขาย <%= catalog.seller_name%></p>
+                                <h6>ราคา <%= catalog.price %> ฿</h6>
+                                
+                              </div>
+                              <div class="col-sm-2">
+                                <span style="display:inline-block; height:55px;"></span>
+                                <form id = 'delete-form' action = '/cart/<%= cart._id %>?_method=DELETE' method='POST'>
+                                  <button id="addcart" type="submit" >ลบ</button>
+                                </form>
+                                <img src="/image/image-1623468697093.png" width="30px">
+                              </div>
+                            </div>
+                          </div>
+                        
+                   
+                <%  } %> 
+        <% }); %>
+        <% }); %>
+
+
+</body>
+</html>

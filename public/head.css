@@ -42,3 +42,19 @@ form {
 .hidden{
   display: none;
 }
+.block {
+  clear: both;
+  width: 300px;
+  height: 500px;;
+}
+.block > div {
+ border: solid red 5px;
+  float: left;
+  width: 33.33%;
+}
+.catr{
+  border:solid rgb(224, 224, 224) 1px;
+}
+.con{
+  height: 30px;
+}

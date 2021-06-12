@@ -1,7 +1,9 @@
 const   express = require('express'),
-        router  = express.Router(),    
+        router  = express.Router();
+        catalog  = require('../models/catalog');  
         multer = require('multer'),
         path = require('path'),
+        middleware = require('../middleware'),
         storge = multer.diskStorage({
             destination:function(req,file,callback){
                 callback(null,'./public/uploads/');
@@ -113,16 +115,14 @@ router.get('/historical',function(req,res){
 });
 
 
-router.get('/new',isLoggedIn,function(req,res){
+router.get('/new',middleware.isLoggedIn,function(req,res){
     res.render('new.ejs');
 });
 
-router.post('/', isLoggedIn,upload.single('image'), function(req, res){
+router.post('/', middleware.isLoggedIn,upload.single('image'), function(req, res){
     req.body.catalog.image = '/uploads/'+ req.file.filename;
-    req.body.catalog.seller = {
-        id: req.user._id,
-        username: req.user.username
-    };
+    req.body.catalog.seller_id = req.user._id;
+    req.body.catalog.seller_name= req.user.username;
     //var newcatalog = {name:name, image:image, desc: desc,type: type, author: author};
     catalog.create(req.body.catalog,function(err, newlyCreated){
         if(err){
@@ -144,13 +144,38 @@ router.get("/:id", function(req, res){
     });
 });
 
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
+router.get("/:id/edit", middleware.checkCatalogOwner, function(req, res){
+    catalog.findById(req.params.id,function(err, foundcatalog){
+        if(err){
+            console.log(err);
+        } else {   
+            res.render("edit.ejs", {catalog: foundcatalog});
+        }
+    });
+});
+    
+router.put('/:id', middleware.checkCatalogOwner,upload.single('image'),function(req, res){
+    if(req.file){
+        req.body.catalog.image = '/uploads/' + req.file.filename;
     }
-    res.redirect('/login');
-}
+    catalog.findByIdAndUpdate(req.params.id,req.body.catalog,function(err,updatecatalog){
+        if(err){
+            res.redirect('/user/shop');
+        } else {
+            res.redirect('/user/shop');
+        }
+    });
+});
 
+router.delete('/:id',  middleware.checkCatalogOwner, function(req, res){
+    catalog.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect('/user/shop');
+        } else {
+            res.redirect('/user/shop');
+        }
+    });
+});
 
 
 module.exports = router;
