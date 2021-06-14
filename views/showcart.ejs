@@ -8,13 +8,14 @@
 
 </head>
 <body> 
+
                 <% cart.forEach(function(cart){  %>
                     <% catalog.forEach(function(catalog){  %>
-                        <% if ( catalog.id ==  cart.id_book ){ %>  
+                        <% if ( catalog.id ==  cart.id_book ){ %> 
                           <div class="container ">
                             <div class="row mb-1 catr" >
                               <div class="col-sm-3 " >
-                                <img src="<%= catalog.image %>" width="100px">
+                                <a href="/catalog/<%= catalog._id %>"><img src="<%= catalog.image %>" width="100px"></a>
                               </div>
                               <div class="col-sm-7">
                                 <h5 class="mb-1"><%= catalog.name %></h5>
@@ -25,9 +26,9 @@
                               <div class="col-sm-2">
                                 <span style="display:inline-block; height:55px;"></span>
                                 <form id = 'delete-form' action = '/cart/<%= cart._id %>?_method=DELETE' method='POST'>
-                                  <button id="addcart" type="submit" >ลบ</button>
+                                   <button  type="submit" >ลบ</button>
                                 </form>
-                                <img src="/image/image-1623468697093.png" width="30px">
+                             
                               </div>
                             </div>
                           </div>

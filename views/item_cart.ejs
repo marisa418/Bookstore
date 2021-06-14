@@ -33,7 +33,7 @@
                         <div class="btn-group">
 
                           <a href="/catalog/<%= catalog._id %>/edit"><button id="addcart" type="submit" > แก้ไข </button></a>
-                          <form id = 'delete-form' action = '/cart/<%= cart.id_book %>?_method=DELETE' method='POST'>
+                          <form id = 'delete-form' action = '/catalog/<%= catalog._id %>?_method=DELETE' method='POST'>
                           <button id="addcart" type="submit" >ลบ</button>
                         </form>
                         </div>

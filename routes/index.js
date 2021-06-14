@@ -1,12 +1,34 @@
 var express = require('express'),
     router  = express.Router(),
     User    = require('../models/user'),
+    catalog  = require('../models/catalog'); 
     middleware = require('../middleware'),
     passport=  require('passport');
 
 
 router.get('/',function(req,res){
-    res.render('home.ejs');
+    var search=req.query.search;
+    catalog.find({name:{'$regex': '.*'+search+'.*'}},function(err, allcatalog){  
+        if(err){    
+            console.log(err);
+        } else {
+            console.log(search);
+            console.log(allcatalog)
+            res.render('home.ejs', {catalog:allcatalog});
+        }
+    });
+});
+router.post('/',function(req,res){
+    var search=req.body.search;
+    console.log("B= "+search);
+    catalog.find({"name": "/"+search+".*/"},function(err, allcatalog){
+        ;   
+        if(err){
+            console.log(err);
+        } else {
+            res.render('home.ejs', {catalog:allcatalog});
+        }
+    });
 });
 
 router.get('/login',function(req,res){
@@ -15,6 +37,7 @@ router.get('/login',function(req,res){
 router.get('/register',function(req,res){
     res.render('register.ejs');
 });
+
 
 router.post('/register', function(req, res){
     var newUser = new User({username: req.body.username,
@@ -37,15 +60,24 @@ router.post('/register', function(req, res){
 
 router.get('/logout', function(req, res){
     req.logout();
-    res.redirect('/');
+    req.flash('success', 'Logged you out successfully');
+    res.redirect('/login');
 });
 
 router.post('/login', passport.authenticate('local',
     {
         successRedirect: '/catalog',
-        failureRedirect: '/login'
+        failureRedirect: '/login',
+        successFlash: true,
+        failureFlash: true,
+        successFlash: 'Successfully log in',
+        failureFlash: 'Invalid username or password'
     }), function(res, res){       
 });
 
+
+router.get('/test',function(req,res){
+    res.render('test.ejs');
+});
 
 module.exports = router;

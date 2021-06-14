@@ -13,7 +13,7 @@ const   express = require('express'),
             }
         }),
         imageFilter = function(req,file,callback){
-            if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)){
+            if(!file.originalname.match(/\.(jpg|jpeg|png|gif|ico)$/i)){
                 return callback(new Error('Only JPG, jpeg, PNG and GIF image files'),false);
             }
             callback(null, true);
@@ -23,77 +23,186 @@ const   express = require('express'),
     
 
 router.get('/', function(req, res){
-    catalog.find({}, function(err, allCollections){
-        if(err){
+    var search=req.query.search;
+    if (search==undefined){
+        catalog.find({},function(err, allcatalog){  
+            if(err){    
+                console.log(err);
+            } else {
+                console.log(search);
+                res.render('catalog.ejs', {catalog:allcatalog});
+            }
+        });
+    }else{
+        catalog.find({name:{'$regex': '.*'+search+'.*'}},function(err, allcatalog){  
+        if(err){    
             console.log(err);
         } else {
-            res.render('catalog.ejs', {catalog: allCollections});
+            console.log(search);
+            console.log(allcatalog)
+            res.render('catalog.ejs', {catalog:allcatalog});
         }
     });
+    }
+    
 });
         
 router.get('/comedy',function(req,res){
-    catalog.find({type:'comedy'}, function(err, allCollections){
-        if(err){
+    var search=req.query.search;
+    if (search==undefined){
+        catalog.find({type:'comedy'}, function(err, allcatalog){
+            if(err){
+                console.log(err);
+            } else {
+                res.render('comedy.ejs', {catalog: allcatalog});
+            }
+        });
+    }else{
+        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'comedy'},function(err, allcatalog){  
+        if(err){    
             console.log(err);
         } else {
-            res.render('comedy.ejs', {catalog: allCollections});
+            console.log(search);
+            console.log(allcatalog)
+            res.render('comedy.ejs', {catalog:allcatalog});
         }
     });
+    }
+    
 });
+
 router.get('/action',function(req,res){
-    catalog.find({type:'action'}, function(err, allCollections){
-        if(err){
+    var search=req.query.search;
+    if (search==undefined){
+        catalog.find({type:'action'}, function(err, allcatalog){
+            if(err){
+                console.log(err);
+            } else {
+                res.render('action.ejs', {catalog: allcatalog});
+            }
+        });
+    }else{
+        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'action'},function(err, allcatalog){  
+        if(err){    
             console.log(err);
         } else {
-            res.render('action.ejs', {catalog: allCollections});
+            console.log(search);
+            console.log(allcatalog)
+            res.render('action.ejs', {catalog:allcatalog});
         }
     });
+    }
+    
 });
 router.get('/romance',function(req,res){
-    catalog.find({type:'romance'}, function(err, allCollections){
-        if(err){
+    var search=req.query.search;
+    if (search==undefined){
+        catalog.find({type:'romance'}, function(err, allcatalog){
+            if(err){
+                console.log(err);
+            } else {
+                res.render('romance.ejs', {catalog: allcatalog});
+            }
+        });
+    }else{
+        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'romance'},function(err, allcatalog){  
+        if(err){    
             console.log(err);
         } else {
-            res.render('romance.ejs', {catalog: allCollections});
+            console.log(search);
+            console.log(allcatalog)
+            res.render('romance.ejs', {catalog:allcatalog});
         }
     });
+    }    
 });
 router.get('/boylove',function(req,res){
-    catalog.find({type:'boylove'}, function(err, allCollections){
-        if(err){
+    var search=req.query.search;
+    if (search==undefined){
+        catalog.find({type:'boylove'}, function(err, allcatalog){
+            if(err){
+                console.log(err);
+            } else {
+                res.render('boylove.ejs', {catalog: allcatalog});
+            }
+        });
+    }else{
+        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'boylove'},function(err, allcatalog){  
+        if(err){    
             console.log(err);
         } else {
-            res.render('boylove.ejs', {catalog: allCollections});
+            console.log(search);
+            console.log(allcatalog)
+            res.render('boylove.ejs', {catalog:allcatalog});
         }
     });
+    }    
 });
 router.get('/scifi',function(req,res){
-    catalog.find({type:'scifi'}, function(err, allCollections){
-        if(err){
+    var search=req.query.search;
+    if (search==undefined){
+        catalog.find({type:'scifi'}, function(err, allcatalog){
+            if(err){
+                console.log(err);
+            } else {
+                res.render('scifi.ejs', {catalog: allcatalog});
+            }
+        });
+    }else{
+        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'scifi'},function(err, allcatalog){  
+        if(err){    
             console.log(err);
         } else {
-            res.render('scifi.ejs', {catalog: allCollections});
+            console.log(search);
+            console.log(allcatalog)
+            res.render('scifi.ejs', {catalog:allcatalog});
         }
     });
+    }    
 });
 router.get('/fantasy',function(req,res){
-    catalog.find({type:'fantasy'}, function(err, allCollections){
-        if(err){
+    var search=req.query.search;
+    if (search==undefined){
+        catalog.find({type:'fantasy'}, function(err, allcatalog){
+            if(err){
+                console.log(err);
+            } else {
+                res.render('fantasy.ejs', {catalog: allcatalog});
+            }
+        });
+    }else{
+        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'fantasy'},function(err, allcatalog){  
+        if(err){    
             console.log(err);
         } else {
-            res.render('fantasy.ejs', {catalog: allCollections});
+            console.log(search);
+            console.log(allcatalog)
+            res.render('fantasy.ejs', {catalog:allcatalog});
         }
     });
+    }    
 });
 router.get('/thriller',function(req,res){
-    catalog.find({type:'thriller'}, function(err, allCollections){
-        if(err){
+    var search=req.query.search;
+    if (search==undefined){
+        catalog.find({type:'thriller'}, function(err, allcatalog){
+            if(err){
+                console.log(err);
+            } else {
+                res.render('thriller.ejs', {catalog: allcatalog});
+            }
+        });
+    }else{
+        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'thriller'},function(err, allcatalog){  
+        if(err){    
             console.log(err);
         } else {
-            res.render('thriller.ejs', {catalog: allCollections});
+            console.log(search);
+            console.log(allcatalog)
+            res.render('thriller.ejs', {catalog:allcatalog});
         }
     });
+    }    
 });
 router.get('/suspense',function(req,res){
     catalog.find({type:'suspense'}, function(err, allCollections){
@@ -105,13 +214,26 @@ router.get('/suspense',function(req,res){
     });
 });
 router.get('/historical',function(req,res){
-    catalog.find({type:'historical'}, function(err, allCollections){
-        if(err){
+    var search=req.query.search;
+    if (search==undefined){
+        catalog.find({type:'historical'}, function(err, allcatalog){
+            if(err){
+                console.log(err);
+            } else {
+                res.render('historical.ejs', {catalog: allcatalog});
+            }
+        });
+    }else{
+        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'historical'},function(err, allcatalog){  
+        if(err){    
             console.log(err);
         } else {
-            res.render('historical.ejs', {catalog: allCollections});
+            console.log(search);
+            console.log(allcatalog)
+            res.render('historical.ejs', {catalog:allcatalog});
         }
     });
+    }    
 });
 
 

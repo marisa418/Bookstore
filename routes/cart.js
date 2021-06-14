@@ -5,8 +5,9 @@ var express = require('express'),
 
     
 
-router.get('/', function(req, res){  
-    cart.find({purchaser_id:req.user._id},function(err, allcart){
+router.get('/', middleware.isLoggedIn, function(req, res){  
+    var purchaser_id = req.user._id;
+    cart.find({purchaser_id:purchaser_id},function(err, allcart){
         if(err){
             console.log(err);
         } else {
@@ -21,6 +22,16 @@ router.get('/', function(req, res){
     });    
 });
         
+router.get("/:id", function(req, res){
+    cart.findById(req.params.id,function(err, foundcart){
+        if(err){
+            console.log(err);
+        } else {
+            
+            res.render("show.ejs", {cart: foundcart});
+        }
+    });
+});
 
 router.post('/', middleware.isLoggedIn, function(req, res){
     var id_book = req.body.id_book;
@@ -36,12 +47,12 @@ router.post('/', middleware.isLoggedIn, function(req, res){
     });
     });
  
-    router.delete('/:id',  middleware.checkCatalogOwner, function(req, res){
+    router.delete('/:id', middleware.isLoggedIn, function(req, res){
         cart.findByIdAndRemove(req.params.id, function(err){
             if(err){
-                res.redirect('/user/shop');
+                res.redirect('/cart');
             } else {
-                res.redirect('/user/shop');
+                res.redirect('/cart');
             }
         });
     });

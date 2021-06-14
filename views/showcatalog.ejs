@@ -10,7 +10,7 @@
 <body>
   
     <div class="images">
-        <div class="album py-5 bg-light" >
+        <div class="album py-1 bg-light" >
             <div class="container">
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <% catalog.forEach(function(catalog){  %>
@@ -20,22 +20,12 @@
                     <a href="/catalog/<%= catalog._id %>"><img src='<%= catalog.image %>' class='card-img-top' width="150px" height="200px"></a>
                      </div>
                     <div class="card-body">
-                        <div class="sizeimage">
+                        <div >
                           <a href="/catalog/<%= catalog._id %>"><h6 class = 'card-title' ><%= catalog.name %></h6> </a>
-                      </div>
-                      <div class="sizeimage">
-                      <p class="card-text">หมวดหมู่: <%= catalog.type %></p>
-                    </div>
-                    <input type='text' class="hidden" name='id_book'  value= <%= catalog.id %> >
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="sizeimage">
-                        
-                        <div class="btn-group">
-                          <button id="addcart" type="submit" > <font size=2>เพิ่มลงตระกร้า</font> </button>
-                        </div>
-                     
-                        </div>
-                      </div>
+                      </div>  
+                    <div >
+                      <h5 class="card-text">฿ <%= catalog.price %></h5>
+                    </div>                  
                     </div>
                   </div>
                 </div>

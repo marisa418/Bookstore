@@ -2,6 +2,7 @@ const   express = require('express'),
         router  = express.Router(),
         catalog  = require('../models/catalog'),
         middleware = require('../middleware'),
+        cart  = require('../models/cart');
         user  = require('../models/user');
     
 
@@ -10,7 +11,6 @@ router.get('/',middleware.isLoggedIn,  function(req, res){
         if(err){
             console.log(err);
         } else {
-            console.log(req.user.username);
             res.render('user.ejs', {user: alluser});
         }
     });

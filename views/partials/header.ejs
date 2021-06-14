@@ -13,7 +13,7 @@
 <body>
   <div >
     <div id="bar1">
-        <h1><a class="nav-link" href="/" >  Book Store </a></h1>
+        <a class="nav-link" href="/catalog" > <img src="/image/Logo3.png"></a>
   </div>
   <div id="bar2">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(229, 198, 250)">
@@ -31,13 +31,14 @@
                 <a class="nav-link" ><span style="display:inline-block; width: 140px;"></span><font color="#660066">ค้นหา</font></a>
               </li>
               <form class="d-flex" >
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <form action='/catalog/' method='GET' autocomplete="off">
+              <input class="form-control me-2"  placeholder="Search" aria-label="Search" name="search" >
+              <a href="/catalog" > <button class="btn btn-outline-success" type="submit" height="100px">Search</button></a>
             </form>
-           
-            <span style="display:inline-block; width: 200px;"></span>
+           </form>
+            <span style="display:inline-block; width: 100px;"></span>
             <% if(!currentUser) {%>
-            <div class="login">
+            <div class="login"> 
               <li class="nav-item">
                 <a class="nav-link" href="/login" > <font color="#660066" class="dropbtn ">Login</font></a>
               </li>
@@ -45,8 +46,12 @@
               <li class="nav-item">
               <a class="nav-link" href="/register" > <font color="#660066" class="regis">Register</font></a>
             </li>
-            <% } else { %>
-             <div class="dropdown">
+            <% } else { %> 
+              <div>
+               <a href="/cart"> <img src="/image/image-1623619685031.ico"  ></a>
+              </div>
+              <span style="display:inline-block; width: 50px;"></span>
+             <div class="dropdown">             
               <li class="nav-item">
                 <a class="nav-link" href="/user" > <font color="#660066" class="name"><%= currentUser.username %></font></a>
               </li>
@@ -68,8 +73,17 @@
           </div>
         </div>
       </nav>
-  </div>
-    
+      <% if(error && error.length > 0) { %>
+        <div class='alert alert-danger' role ='alert'>
+          <%= error %>
+        </div>
+      <%}%>
+      <% if(success && success.length > 0) { %>
+        <div class='alert alert-success' role ='alert'>
+          <%= success %>
+        </div>  
+      <%}%>
+  </div>  
   </div>
   
 </body>

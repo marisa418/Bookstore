@@ -8,8 +8,19 @@
     <link rel="stylesheet" href="/public/head.css">
 </head>
 <body>
+    
     <div id="bar1">
-        <h1><a class="nav-link" href="/" >  Book Store </a></h1>
+        <a class="nav-link" href="/catalog" >  <img src="/image/Logo.png"> </a>
   </div>
+  <% if(error && error.length > 0) { %>
+        <div class='alert alert-danger' role ='alert'>
+          <%= error %>
+        </div>
+      <%}%>
+      <% if(success && success.length > 0) { %>
+        <div class='alert alert-success' role ='alert'>
+          <%= success %>
+        </div>  
+      <%}%>
 </body>
 </html>

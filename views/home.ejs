@@ -1,5 +1,32 @@
-<%- include('partials/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <link rel="stylesheet" href="/public/catalog.css">
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
 
-<h1>พื้นที่รออัพเดต</h1>
+    <div class="container">
+        <div class="row">
+    
+    <div id="ro01" class="col-sm-3">
+        <%- include('partials/menu.ejs') %>
+      </div>
+        <div id="ro02" class="col-sm-9">
+          <%- include('showcatalog.ejs') %>
+        </div>
+    </div>
+    
 
-<%- include('partials/footer.ejs') %>
+    <%- include('partials/footer.ejs') %>
+
+
+</body>
+</html>
+
+
+
