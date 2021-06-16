@@ -6,13 +6,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="/public/head.css">
+    <title>Mystery Book</title>
 </head>
 <body>
-    
-    <div id="bar1">
-        <a class="nav-link" href="/catalog" >  <img src="/image/Logo.png"> </a>
-  </div>
-  <% if(error && error.length > 0) { %>
+  <div class="navbar1">
+    <div class="row" id="bar1">
+      <div id="ro01" class="col-sm-3 ">    
+        <div class="row">
+          <div id="ro01" class="col-sm-6 "> 
+            <a class="nav-link px-5" href="/" > <img src="/image/Logo3.png" width="120px"></a> 
+          </div>
+          <div id="ro01" class="col-sm-6">  
+            <div class="dropdown ">  
+              <ul class="navbar-nav  px-4">
+              <li class="nav-item">
+                <a class="nav-link py-3" href="/catalog" > <font color="#ffffff" class="dropbtn ">หนังสือ</font></a>
+              </li>
+            </ul>
+              <div class="dropdown-content ">
+                <font size="3px" class="menu" ><a href="/catalog" >หนังสือทั้งหมด</a> </font>      
+                <font size="3px" class="menu" ><a href="/catalog/comedy">นิยายตลกขบขัน</a></font>       
+                <font size="3px" class="menu"><a href="/catalog/action">นิยายต่อสู้</a></font>      
+                <font size="3px" class="menu"><a href="/catalog/romance">นิยายรักโรแมนติก</a></font>     
+                <font size="3px" class="menu"><a href="/catalog/boylove">นิยายวาย </a></font>     
+                <font size="3px" class="menu"><a href="/catalog/scifi">นิยายวิทยาศาสตร์</a></font>     
+                <font size="3px" class="menu"><a href="/catalog/fantasy">นิยายแฟนตาซี</a></font>    
+                <font size="3px" class="menu"><a href="/catalog/thriller">นิยายสยองขวัญ </a> </font>   
+                <font size="3px" class="menu"><a href="/catalog/suspense">นิยายสืบสวนสอบสวน </a></font>     
+                <font size="3px" class="menu"><a href="/catalog/historical">นิยายอิงประวัติศาสตร์ </a></font> 
+              </div>
+            </div>
+          </div>
+        </div>       
+        
+      </div>
+      
+      <div id="ro03" class="col-sm-9 navbar1">
+        <div id="bar2" class="navbar1">
+          <nav class="navbar navbar-expand-lg navbar-light navbar1" >
+              <div class="container-fluid">
+                <% if(!currentUser) {%>      
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav">
+                  <span style="display:inline-block; width: 713px;"></span>
+                  
+                  <div class="login"> 
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login" > <font color="#ffffff" class="dropbtn ">Login</font></a>
+                    </li>
+                    </div>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/register" > <font color="#ffffff" class="regis">Register</font></a>
+                  </li>
+                  
+                  </div>
+                  <% } else { %> 
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav">
+                      <span style="display:inline-block; width: 709px;"></span>
+                      <div>
+                        <a href="/cart" > <img class="py-3" src="/image/shopping_basket_icon_156962.ico"  ></a>
+                       </div>
+                       <span style="display:inline-block; width: 11px;"></span>
+                      <div class="login"> 
+                        <div class="dropdown ">             
+                          <li class="nav-item">
+                            <a class="nav-link py-3" href="/user" > <font color="#ffffff" class="name"><%= currentUser.username %></font></a>
+                          </li>
+                          <div class="dropdown-content">
+                          <a href="/user">ข้อมูลส่วนตัว</a>
+                          <a href="/cart">ตะกร้าสิ้นค้า</a>
+                          <a href="/catalog/new">เพิ่มสินค้า</a>
+                          <a href="/logout">Logout</a>
+                          </div>
+                        </div>
+                        </div>
+                        <li class="nav-item">
+                          <a class="nav-link  py-3" href="/logout" > <font color="#ffffff" class="logout">Logout</font></a>
+                      </li>
+                      
+                      </div>
+                      <% } %>    
+                  </ul>
+                </div>
+              </div>
+      </div>
+
+
+
+
+
+
+  
+
+      </nav>
+      <% if(error && error.length > 0) { %>
         <div class='alert alert-danger' role ='alert'>
           <%= error %>
         </div>
@@ -22,5 +110,8 @@
           <%= success %>
         </div>  
       <%}%>
+  </div>  
+  </div>
+
 </body>
 </html>

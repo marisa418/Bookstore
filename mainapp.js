@@ -40,10 +40,10 @@ app.use(function(req,res,next){
 app.use(methodOverride('_method'));
 app.use(express.static('./public'));
 app.use('/public', express.static('public'));
-app.use('/catalog',catalogRoutes)
-app.use('/user',userRoutes)
-app.use('/cart',cartRoutes)
-app.use('/',indexRoutes )
+app.use('/catalog',catalogRoutes);
+app.use('/user',userRoutes);
+app.use('/cart',cartRoutes);
+app.use('/',indexRoutes );
 
 
 app.listen(3000,function(){

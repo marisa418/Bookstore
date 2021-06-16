@@ -1,6 +1,7 @@
 var express = require('express'),
     router  = express.Router(),
     middleware = require('../middleware'),
+    catalog  = require('../models/catalog'),
     cart  = require('../models/cart');
 
     

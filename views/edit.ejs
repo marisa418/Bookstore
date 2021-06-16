@@ -9,8 +9,8 @@
 <body>
     <%- include('partials/head.ejs') %>
     <div class='container'>
-        <form action='/catalog/<%= catalog._id %>?_method=PUT' method='POST' enctype="multipart/form-data">
-            <div class="mb-1"> 
+        <form action='/catalog' method='POST' enctype="multipart/form-data">
+            <div class="mb-1">
               <img src="<%= catalog.image %>" width="300px">
               <div class="col-md-10">
               <label class="form-label">ชื่อสินค้า</label>
@@ -20,33 +20,43 @@
             <div class="mb-1">
               <div class="col-md-10">
                 <label  class="form-label">รูปภาพ</label>
-                
-                <input type='file' class="form-control" name='image' accept="image/*"> 
+                <input type='file' class="form-control" name='image' accept="image/*"  placeholder='<%= catalog.image%>' value="<%= catalog.image %>"> 
               </div>
             </div>
             <div class="mb-1">
             <div class="row">
               <div class="col-sm-5">
                   <label class="form-label">ผู้แต่ง</label>
-                  <input type='text'class="form-control"  name='catalog[author]' id="price" placeholder='<%= catalog.author%>' value="<%= catalog.author%>">
+                  <input type='text'class="form-control"  name='catalog[author]' placeholder='<%= catalog.author %>' value="<%= catalog.author%>">
               </div>  
 
               <div class="col-sm-5">
                   <label class="form-label">สำนักพิมพ์</label>
-                  <input type='text' class="form-control" name='catalog[publishing]' id="number" placeholder='<%= catalog.publishing %>' value="<%= catalog.publishing %>">
+                  <input type='text' class="form-control" name='catalog[publishing]' placeholder='<%= catalog.publishing %>' value="<%= catalog.publishing%>">
               </div>              
           </div>
+          <div class="row">
+            <div class="col-sm-5">
+                <label class="form-label">จำนวนหน้า</label>
+                <input type='text'class="form-control"  name='catalog[num_pages]' placeholder='<%= catalog.num_pages %>' value="<%= catalog.num_pages %>" >
+            </div>  
+
+            <div class="col-sm-5">
+                <label class="form-label">ISBN</label>
+                <input type='text' class="form-control" name='catalog[ISBN]' placeholder='<%= catalog.ISBN%>' value="<%= catalog.ISBN %>">
+            </div>              
+        </div>
         </div>
         <div class="mb-1">
             <div class="row">
               <div class="col-sm-5">
                   <label class="form-label">ราคา</label>
-                  <input type='text'class="form-control"  name='catalog[price]' id="price" placeholder='<%= catalog.price %>' value="<%= catalog.price %>">
+                  <input type='text'class="form-control"  name='catalog[price]' placeholder='<%= catalog.price%>' value="<%= catalog.price%>" >
               </div>  
 
               <div class="col-sm-5">
                   <label class="form-label">จำนวนเล่ม</label>
-                  <input type='text' class="form-control" name='catalog[number]' id="number" placeholder='<%= catalog.number %>' value="<%= catalog.number %>">
+                  <input type='text' class="form-control" name='catalog[number]' id="number" placeholder='<%= catalog.number %>' value="<%= catalog.number %>" >
               </div>              
           </div>
         </div>
@@ -68,10 +78,10 @@
             </div>
             </div>
             <div class="mb-1">
-              <div class="col-md-10" id="Desc">
-              <label  class="form-label">คำอธิบาย</label>
-              <input type="text" class="form-control" name='catalog[desc]' placeholder='<%= catalog.desc %>' value="<%= catalog.desc %>">
-            </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">คำโปรย</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name='catalog[desc]' placeholder='<%= catalog.desc %>' value="<%= catalog.desc %>"></textarea>
+              </div>
             <div class="mb-3">
           </div>
             <button type="submit" class="btn btn-primary">Submit</button>

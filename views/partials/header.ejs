@@ -4,76 +4,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Store</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="/public/head.css">
-    
+    <title>Mystery Book</title>
 
   </head>
 <body>
-  <div >
-    <div id="bar1">
-        <a class="nav-link" href="/catalog" > <img src="/image/Logo3.png"></a>
-  </div>
-  <div id="bar2">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(229, 198, 250)">
-        <div class="container-fluid">
- 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" > <span style="display:inline-block; width: 100px;"></span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/catalog" > <font color="#660066">รายการหนังสือ</font></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" ><span style="display:inline-block; width: 140px;"></span><font color="#660066">ค้นหา</font></a>
-              </li>
-              <form class="d-flex" >
-              <form action='/catalog/' method='GET' autocomplete="off">
-              <input class="form-control me-2"  placeholder="Search" aria-label="Search" name="search" >
-              <a href="/catalog" > <button class="btn btn-outline-success" type="submit" height="100px">Search</button></a>
-            </form>
-           </form>
-            <span style="display:inline-block; width: 100px;"></span>
-            <% if(!currentUser) {%>
-            <div class="login"> 
-              <li class="nav-item">
-                <a class="nav-link" href="/login" > <font color="#660066" class="dropbtn ">Login</font></a>
-              </li>
-              </div>
-              <li class="nav-item">
-              <a class="nav-link" href="/register" > <font color="#660066" class="regis">Register</font></a>
-            </li>
-            <% } else { %> 
-              <div>
-               <a href="/cart"> <img src="/image/image-1623619685031.ico"  ></a>
-              </div>
-              <span style="display:inline-block; width: 50px;"></span>
-             <div class="dropdown">             
-              <li class="nav-item">
-                <a class="nav-link" href="/user" > <font color="#660066" class="name"><%= currentUser.username %></font></a>
-              </li>
-              <div class="dropdown-content">
-              <a href="/user">ข้อมูลส่วนตัว</a>
-              <a href="/cart">ตะกร้าสิ้นค้า</a>
-              <a href="/catalog/new">เพิ่มสินค้า</a>
-              <a href="/logout">Logout</a>
-              </div>
-            </div>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout" > <font color="#660066" class="logout">Logout</font></a>
-            </li>
-            <% } %> 
-            
-            
-            </div>
-            </ul>
+
+    <div class="row navbar1" >
+      <div id="ro01" class="col-sm-3">    
+        <div class="row">
+          <div id="ro01" class="col-sm-6 "> 
+            <a class="nav-link px-5" href="/" > <img src="/image/Logo3.png" width="120px"></a> 
           </div>
-        </div>
+          <div id="ro01" class="col-sm-6">  
+            <div class="dropdown">  
+              <ul class="navbar-nav  px-4">
+              <li class="nav-item">
+                <a class="nav-link py-3" href="/catalog" > <font color="#ffffff" class="dropbtn ">หนังสือ</font></a>
+              </li>
+            </ul>
+              <div class="dropdown-content ">
+                <font size="3px" class="menu" ><a href="/catalog" >หนังสือทั้งหมด</a> </font>      
+                <font size="3px" class="menu" ><a href="/catalog/comedy">นิยายตลกขบขัน</a></font>       
+                <font size="3px" class="menu"><a href="/catalog/action">นิยายต่อสู้</a></font>      
+                <font size="3px" class="menu"><a href="/catalog/romance">นิยายรักโรแมนติก</a></font>     
+                <font size="3px" class="menu"><a href="/catalog/boylove">นิยายวาย </a></font>     
+                <font size="3px" class="menu"><a href="/catalog/scifi">นิยายวิทยาศาสตร์</a></font>     
+                <font size="3px" class="menu"><a href="/catalog/fantasy">นิยายแฟนตาซี</a></font>    
+                <font size="3px" class="menu"><a href="/catalog/thriller">นิยายสยองขวัญ </a> </font>   
+                <font size="3px" class="menu"><a href="/catalog/suspense">นิยายสืบสวนสอบสวน </a></font>     
+                <font size="3px" class="menu"><a href="/catalog/historical">นิยายอิงประวัติศาสตร์ </a></font> 
+              </div>
+            </div>
+          </div>
+        </div>       
+        
+      </div>
+      
+      <div id="ro03" class="col-sm-9 navbar1">
+        <div id="bar2" class="">
+          <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container-fluid">      
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link" ><span style="display:inline-block; width: 50px;"></span><font color="#ffffff">ค้นหา</font></a>
+                    </li>
+                    <form class="d-flex form_search" >
+                    <form action='/catalog/' method='GET' autocomplete="off">
+                    <input class="form-control me-2" id="Search" placeholder="Search" aria-label="Search" name="search" value="" height="50px">
+                    <a href="/catalog" > <input type="image" class="py-1" src="/image/magnifyng_glass.ico" ></a>
+                  </form>
+                 </form>
+                  <span style="display:inline-block; width: 200px;"></span>
+                  <% if(!currentUser) {%>
+                  <div class="login"> 
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login" > <font color="#ffffff" class="dropbtn ">Login</font></a>
+                    </li>
+                    </div>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/register" > <font color="#ffffff" class="regis">Register</font></a>
+                  </li>
+                  <% } else { %> 
+                    <div class="py-2">
+                     <a href="/cart"> <img src="/image/shopping_basket_icon_156962.ico"  ></a>
+                    </div>
+                    <span style="display:inline-block; width: 5px;"></span>
+                   <div class="dropdown ">             
+                    <li class="nav-item">
+                      <a class="nav-link" href="/user" > <font color="#ffffff" class="name"><%= currentUser.username %></font></a>
+                    </li>
+                    <div class="dropdown-content">
+                    <a href="/user">ข้อมูลส่วนตัว</a>
+                    <a href="/cart">ตะกร้าสิ้นค้า</a>
+                    <a href="/catalog/new">เพิ่มสินค้า</a>
+                    <a href="/logout">Logout</a>
+                    </div>
+                  </div>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/logout" > <font color="#ffffff" class="logout">Logout</font></a>
+                  </li>
+                  <% } %> 
+                  
+                  
+                  </div>
+                  </ul>
+                </div>
+              </div>
+      </div>
       </nav>
-      <% if(error && error.length > 0) { %>
+  </div>  
+    
+  <% if(error && error.length > 0) { %>
         <div class='alert alert-danger' role ='alert'>
           <%= error %>
         </div>
@@ -82,9 +107,6 @@
         <div class='alert alert-success' role ='alert'>
           <%= success %>
         </div>  
-      <%}%>
-  </div>  
-  </div>
-  
+      <%}%>   
 </body>
 </html>

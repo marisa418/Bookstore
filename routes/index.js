@@ -7,28 +7,7 @@ var express = require('express'),
 
 
 router.get('/',function(req,res){
-    var search=req.query.search;
-    catalog.find({name:{'$regex': '.*'+search+'.*'}},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('home.ejs', {catalog:allcatalog});
-        }
-    });
-});
-router.post('/',function(req,res){
-    var search=req.body.search;
-    console.log("B= "+search);
-    catalog.find({"name": "/"+search+".*/"},function(err, allcatalog){
-        ;   
-        if(err){
-            console.log(err);
-        } else {
-            res.render('home.ejs', {catalog:allcatalog});
-        }
-    });
+    res.render('home.ejs');
 });
 
 router.get('/login',function(req,res){
@@ -60,17 +39,15 @@ router.post('/register', function(req, res){
 
 router.get('/logout', function(req, res){
     req.logout();
-    req.flash('success', 'Logged you out successfully');
     res.redirect('/login');
 });
 
 router.post('/login', passport.authenticate('local',
     {
-        successRedirect: '/catalog',
+        successRedirect: '/',
         failureRedirect: '/login',
         successFlash: true,
         failureFlash: true,
-        successFlash: 'Successfully log in',
         failureFlash: 'Invalid username or password'
     }), function(res, res){       
 });

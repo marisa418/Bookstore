@@ -1,6 +1,10 @@
-#bar1{
-    border: 1px solid #1e0234;
+.navbar1{
+    height: 55px;
     background-color: #1e0234;
+}
+.div_navbar{
+  border: 1px solid #1e0234;
+  background-color: #1e0234;
 }
 
 li{
@@ -43,7 +47,7 @@ form {
 .block {
   clear: both;
   width: 300px;
-  height: 500px;;
+  height: 500px;
 }
 .block > div {
  border: solid red 5px;
@@ -55,4 +59,66 @@ form {
 }
 .con{
   height: 30px;
+}
+.form_search{
+  width: 400px;
+  height: 40px;
+}
+
+.form_price{
+  width: 250px;
+  height: 30px;
+
+}
+
+.login_button{
+  width: 300px;
+  height:50px;
+  border: #a178c0 1px;
+  border-radius: 8px;
+  background-color: #a178c0;
+  color: rgb(255, 255, 255);
+ 
+}
+.addcart{
+  width: 200px;
+  height:40px;
+  border: #a178c0 1px;
+  border-radius: 8px;
+  background-color: #a178c0;
+  color: rgb(255, 255, 255);
+}
+.H_bar{
+  width: 700px;
+  height:40px;
+  background-color: #c0c0c0;
+  color: rgb(0, 0, 0);
+}
+.H_bar2{
+  width: 1100px;
+  height:40px;
+  background-color: #c0c0c0;
+  color: rgb(0, 0, 0);
+}
+.desc_bar{
+  width: 1100px;
+  height:150px;
+}
+.H_bar3{
+  width: 1100px;
+  height:40px;
+  background-color: #c0c0c0;
+  color: rgb(0, 0, 0);
+}
+.form_desc{
+  width: 700px;
+  height:100px;
+}
+.foot{
+  height:100px;
+  border: 1px solid #1e0234;
+  background-color: #1e0234;
+}
+.menu{
+  line-height: 3px;
 }

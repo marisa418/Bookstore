@@ -34,6 +34,17 @@
                   <input type='text' class="form-control" name='catalog[publishing]' id="number">
               </div>              
           </div>
+          <div class="row">
+            <div class="col-sm-5">
+                <label class="form-label">จำนวนหน้า</label>
+                <input type='text'class="form-control"  name='catalog[num_pages]' id="price" >
+            </div>  
+
+            <div class="col-sm-5">
+                <label class="form-label">ISBN</label>
+                <input type='text' class="form-control" name='catalog[ISBN]' id="number">
+            </div>              
+        </div>
         </div>
         <div class="mb-1">
             <div class="row">
@@ -66,10 +77,10 @@
             </div>
             </div>
             <div class="mb-1">
-              <div class="col-md-10" id="Desc">
-              <label  class="form-label">คำอธิบาย</label>
-              <input type="text" class="form-control" name='catalog[desc]' placeholder='Description of your collection.'>
-            </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">คำโปรย</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name='catalog[desc]'></textarea>
+              </div>
             <div class="mb-3">
           </div>
             <button type="submit" class="btn btn-primary">Submit</button>

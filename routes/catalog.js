@@ -1,9 +1,10 @@
 const   express = require('express'),
-        router  = express.Router();
-        catalog  = require('../models/catalog');  
+        router  = express.Router(),
+        comment  = require('../models/comment'),  
         multer = require('multer'),
         path = require('path'),
         middleware = require('../middleware'),
+        
         storge = multer.diskStorage({
             destination:function(req,file,callback){
                 callback(null,'./public/uploads/');
@@ -20,220 +21,829 @@ const   express = require('express'),
         },
         upload = multer({storage:storge,fileFilter:imageFilter}),
         catalog  = require('../models/catalog');
-    
 
 router.get('/', function(req, res){
     var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="catalog";
     if (search==undefined){
-        catalog.find({},function(err, allcatalog){  
-            if(err){    
-                console.log(err);
-            } else {
-                console.log(search);
-                res.render('catalog.ejs', {catalog:allcatalog});
-            }
-        });
-    }else{
-        catalog.find({name:{'$regex': '.*'+search+'.*'}},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('catalog.ejs', {catalog:allcatalog});
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
     }
-    
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
 });
         
 router.get('/comedy',function(req,res){
     var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="comedy";
     if (search==undefined){
-        catalog.find({type:'comedy'}, function(err, allcatalog){
-            if(err){
-                console.log(err);
-            } else {
-                res.render('comedy.ejs', {catalog: allcatalog});
-            }
-        });
-    }else{
-        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'comedy'},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('comedy.ejs', {catalog:allcatalog});
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({type:page,price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
     }
     
 });
 
-router.get('/action',function(req,res){
+router.get('/action',function(req,res){   
     var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="action";
     if (search==undefined){
-        catalog.find({type:'action'}, function(err, allcatalog){
-            if(err){
-                console.log(err);
-            } else {
-                res.render('action.ejs', {catalog: allcatalog});
-            }
-        });
-    }else{
-        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'action'},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('action.ejs', {catalog:allcatalog});
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({type:page,price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
     }
-    
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
 });
 router.get('/romance',function(req,res){
     var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="romance";
     if (search==undefined){
-        catalog.find({type:'romance'}, function(err, allcatalog){
-            if(err){
-                console.log(err);
-            } else {
-                res.render('romance.ejs', {catalog: allcatalog});
-            }
-        });
-    }else{
-        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'romance'},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('romance.ejs', {catalog:allcatalog});
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
-    }    
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({type:page,price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
 });
 router.get('/boylove',function(req,res){
     var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="boylove";
     if (search==undefined){
-        catalog.find({type:'boylove'}, function(err, allcatalog){
-            if(err){
-                console.log(err);
-            } else {
-                res.render('boylove.ejs', {catalog: allcatalog});
-            }
-        });
-    }else{
-        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'boylove'},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('boylove.ejs', {catalog:allcatalog});
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
-    }    
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({type:page,price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    } 
 });
 router.get('/scifi',function(req,res){
     var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="scifi";
     if (search==undefined){
-        catalog.find({type:'scifi'}, function(err, allcatalog){
-            if(err){
-                console.log(err);
-            } else {
-                res.render('scifi.ejs', {catalog: allcatalog});
-            }
-        });
-    }else{
-        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'scifi'},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('scifi.ejs', {catalog:allcatalog});
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
-    }    
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({type:page,price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    } 
 });
 router.get('/fantasy',function(req,res){
     var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="fantasy";
     if (search==undefined){
-        catalog.find({type:'fantasy'}, function(err, allcatalog){
-            if(err){
-                console.log(err);
-            } else {
-                res.render('fantasy.ejs', {catalog: allcatalog});
-            }
-        });
-    }else{
-        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'fantasy'},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('fantasy.ejs', {catalog:allcatalog});
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
-    }    
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({type:page,price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
 });
 router.get('/thriller',function(req,res){
     var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="thriller";
     if (search==undefined){
-        catalog.find({type:'thriller'}, function(err, allcatalog){
-            if(err){
-                console.log(err);
-            } else {
-                res.render('thriller.ejs', {catalog: allcatalog});
-            }
-        });
-    }else{
-        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'thriller'},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('thriller.ejs', {catalog:allcatalog});
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
-    }    
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({type:page,price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }   
 });
 router.get('/suspense',function(req,res){
-    catalog.find({type:'suspense'}, function(err, allCollections){
-        if(err){
-            console.log(err);
-        } else {
-            res.render('suspense.ejs', {catalog: allCollections});
+    var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="suspense";
+    if (search==undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({type:page,price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
 });
 router.get('/historical',function(req,res){
     var search=req.query.search;
+    var min_price=req.query.min_price;
+    var max_price=req.query.max_price;
+    var page="historical";
     if (search==undefined){
-        catalog.find({type:'historical'}, function(err, allcatalog){
-            if(err){
-                console.log(err);
-            } else {
-                res.render('historical.ejs', {catalog: allcatalog});
-            }
-        });
-    }else{
-        catalog.find({name:{'$regex': '.*'+search+'.*'},type:'historical'},function(err, allcatalog){  
-        if(err){    
-            console.log(err);
-        } else {
-            console.log(search);
-            console.log(allcatalog)
-            res.render('historical.ejs', {catalog:allcatalog});
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
         }
-    });
-    }    
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({type:page,price:{$gte: min_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({type:page,price:{$gte: min_price},price:{$lte:max_price}},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }
+    if (search!=undefined){
+        if (min_price==undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price==undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price==undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+        if (min_price!=undefined && max_price!=undefined){
+            catalog.find({name:{'$regex': '.*'+search+'.*'},price:{$gte: min_price},price:{$lte:max_price},type:page},function(err, allcatalog){  
+                 if(err){    
+                 console.log(err);
+                 } else {
+                     res.render(page+'.ejs', {catalog:allcatalog});
+                    }
+            });
+        }
+    }   
 });
 
 
@@ -256,15 +866,23 @@ router.post('/', middleware.isLoggedIn,upload.single('image'), function(req, res
 });
 
 router.get("/:id", function(req, res){
-    catalog.findById(req.params.id,function(err, foundcatalog){
+    catalog.findById(req.params.id).populate('comment').exec(function(err, foundcatalog){
         if(err){
             console.log(err);
         } else {
-            
-            res.render("show.ejs", {catalog: foundcatalog});
+            comment.find({book_id:req.params.id},function(err, allcomment){
+                if(err){
+                    res.render('show.ejs', {comment: allcomment,catalog:foundcatalog});
+                    console.log(err);
+                } else {
+                    res.render('show.ejs', {comment: allcomment,catalog:foundcatalog});
+                 }                        
+            }); 
         }
     });
+    
 });
+
 
 router.get("/:id/edit", middleware.checkCatalogOwner, function(req, res){
     catalog.findById(req.params.id,function(err, foundcatalog){
@@ -298,6 +916,33 @@ router.delete('/:id',  middleware.checkCatalogOwner, function(req, res){
         }
     });
 });
+
+
+router.post("/:id", middleware.isLoggedIn, function(req, res){
+    catalog.findById(req.params.id, function(err, foundcatalog){
+        if(err){
+            console.log(err);
+            res.redirect('/catalog');
+        } else {
+            var book_id =req.params.id;
+            var text= req.body.text;
+            var author={
+                id: req.user._id,
+                username: req.user.username
+            };   
+            var newcomment= {book_id:book_id,text:text,author:author};  
+            comment.create(newcomment, function(err, comment){
+                if(err) {
+                    console.log(err);
+                } else {
+                    res.redirect('/catalog/'+ foundcatalog._id);
+                }
+            });
+        }
+    });
+});
+
+
 
 
 module.exports = router;

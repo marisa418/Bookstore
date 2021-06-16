@@ -27,5 +27,12 @@ router.get('/shop',middleware.isLoggedIn, function(req, res){
         }
     });
 });
+router.get('/purchase_history',middleware.isLoggedIn, function(req, res){
+            res.render('purchase_history.ejs');
+
+});
+
+
+
 
 module.exports = router;
