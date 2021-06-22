@@ -17,14 +17,22 @@ router.get('/register',function(req,res){
     res.render('register.ejs');
 });
 
-
 router.post('/register', function(req, res){
-    var newUser = new User({username: req.body.username,
+    var newUser = new User({
+        username: req.body.username,       
         email: req.body.email,
         phone: req.body.phone,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        gender: req.body.gender});
+        gender: req.body.gender,
+        address_information:
+    [{
+        address: req.body.address,
+        province:req.body.province ,
+        district:req.body.district,
+        postcode:req.body.postcode,
+    }]
+    });
     User.register(newUser, req.body.password, function(err, user){
         if(err) {
             console.log(err);
@@ -36,6 +44,24 @@ router.post('/register', function(req, res){
     });
 });
 
+//router.post('/register', function(req, res){
+ //   var newUser = new User({username: req.body.username,
+//        email: req.body.email,
+//        phone: req.body.phone,
+//        first_name: req.body.first_name,
+//        last_name: req.body.last_name,
+//        gender: req.body.gender});
+//    User.register(newUser, req.body.password, function(err, user){
+//        if(err) {
+//            console.log(err);
+ //           return res.render('register');
+//        }
+//        passport.authenticate('local')(req, res, function(){
+//            res.redirect('/');
+//        });
+//    });
+//});
+
 
 router.get('/logout', function(req, res){
     req.logout();
@@ -44,7 +70,7 @@ router.get('/logout', function(req, res){
 
 router.post('/login', passport.authenticate('local',
     {
-        successRedirect: '/',
+        successRedirect: '/user/test',
         failureRedirect: '/login',
         successFlash: true,
         failureFlash: true,

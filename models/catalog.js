@@ -6,6 +6,7 @@ var catalogSchema = new mongoose.Schema({
     price: Number,
     number: Number,
     author: String,
+    date :Date,
     publishing:String,
     num_pages:String,
     ISBN:String,

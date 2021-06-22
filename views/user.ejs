@@ -1,4 +1,4 @@
-
+  <link rel="stylesheet" href="/public/popup.css">
     <%- include('partials/head.ejs') %>
     <div class="row">
     
@@ -12,11 +12,10 @@
               <li class="breadcrumb-item active" aria-current="page"><font size='3'>ข้อมูลส่วนตัว</font></li>
             </ol>
           </nav>
-          <div class="row">   
-            <div class="col-sm-3 px-5 py-2">
-              <img src="/image/Untitled-1.png" width="200px" height="265px">
-            </div>
-            <div class="col-sm-9 px-5 py-2">
+          <div class="row">             
+            <div class="col-sm-6 px-5 py-2 Acc">
+            <p> <font size="5px"> Manage My Account &nbsp;&nbsp;</font><font style="cursor:hand" color="0000CC" onclick="openForm()">EDIT</font> </p>  
+             <div>
               <% user.forEach(function(user){  %>
                 <h4>ชื่อ : <%= user.first_name %></h4>
                 <h4>นามสกุล : <%= user.last_name %></h4>
@@ -25,7 +24,24 @@
                 <h4>เพศ : <%= user.gender %></h4>
                 <% }); %>
                 <button>แก้ไขข้อมูล</button>
+              </div>
             </div>
+            <div class="col-sm-6 px-5 py-2 Add">
+             <p> <font size="5px"> Address Book&nbsp;&nbsp; </font> <a href="/user/edit_address"><font style="cursor:hand" color="0000CC" >EDIT</font> </p> </a>      
+             <% user.forEach(function(user){  %>
+              <form action='/user?_method=PUT'  method='POST' enctype="multipart/form-data">
+                <input type='text'class="form-control"  name='address' value="<%= user.address_information.address %>">
+             <p>2: <%= user.address_information.district %></p>
+             <p></p>
+             <p></p>
+             <button type="submit" class="btn">บันทึก</button>
+            </form> 
+             <% }) %>
+             <div >
+              </div>
+
+            </div>
+
           </div>
           
         

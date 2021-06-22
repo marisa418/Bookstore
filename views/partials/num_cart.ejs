@@ -1,0 +1,9 @@
+<%i=0,total_price = 0 ,numcart=0 %> 
+<% cart.forEach(function(cart){  %>
+    <% catalog.forEach(function(catalog){  %>
+        <% if ( catalog.id ==  cart.id_book ){ %> 
+          <% i+=1 %>
+          <% numcart = i %>
+        <%  } %> 
+    <% }); %>
+<% }); %>

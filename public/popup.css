@@ -1,0 +1,21 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  top: 120px;
+  right: 25px;
+  background-color: white;
+  z-index: 9;
+  width: 450px;
+}
+
+.Acc{
+    background-color: #ff0000;
+}
+
+.Add{
+    background-color: #66ff00;
+}

@@ -9,7 +9,7 @@
 <body>
     <%- include('partials/head.ejs') %>
     <div class='container'>
-        <form action='/catalog' method='POST' enctype="multipart/form-data">
+        <form action='/user/shop/<%= catalog._id %>?_method=PUT'  method='POST' enctype="multipart/form-data">
             <div class="mb-1">
               <img src="<%= catalog.image %>" width="300px">
               <div class="col-md-10">
@@ -20,7 +20,12 @@
             <div class="mb-1">
               <div class="col-md-10">
                 <label  class="form-label">รูปภาพ</label>
-                <input type='file' class="form-control" name='image' accept="image/*"  placeholder='<%= catalog.image%>' value="<%= catalog.image %>"> 
+               
+               <% if(value==undefined){ %>
+                  <input type='file' class="form-control" name='image'   placeholder='<%= catalog.image%>' value="<%= catalog.image %>"> 
+                  <% } else {%>
+                    <input type='file' class="form-control" name='image' accept="image/*" > 
+                    <% } %>
               </div>
             </div>
             <div class="mb-1">

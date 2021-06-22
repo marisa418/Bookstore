@@ -2,12 +2,30 @@ const   express = require('express'),
         router  = express.Router(),
         catalog  = require('../models/catalog'),
         middleware = require('../middleware'),
-        cart  = require('../models/cart');
-        user  = require('../models/user');
+        cart  = require('../models/cart'),
+        user  = require('../models/user'),
+        multer = require('multer'),
+        path = require('path'),
+        
+        storge = multer.diskStorage({
+            destination:function(req,file,callback){
+                callback(null,'./public/uploads/');
+            },
+            filename:function(req,file,callback){
+                callback(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+            }
+        }),
+        imageFilter = function(req,file,callback){
+            if(!file.originalname.match(/\.(jpg|jpeg|png|gif|ico)$/i)){
+                return callback(new Error('Only JPG, jpeg, PNG and GIF image files'),false);
+            }
+            callback(null, true);
+        },
+        upload = multer({storage:storge,fileFilter:imageFilter});
     
 
 router.get('/',middleware.isLoggedIn,  function(req, res){
-    user.find({username :req.user.username }, function(err, alluser){
+    user.find({_id:req.user._id }, function(err, alluser){
         if(err){
             console.log(err);
         } else {
@@ -32,7 +50,82 @@ router.get('/purchase_history',middleware.isLoggedIn, function(req, res){
 
 });
 
+router.put('/shop/:id',middleware.isLoggedIn,middleware.checkCatalogOwner,upload.single('image'),function(req, res){
+    if(req.file){
+        req.body.catalog.image = '/uploads/' + req.file.filename;
+    }
+    catalog.findByIdAndUpdate(req.params.id,req.body.catalog,function(err,updatecatalog){
+        if(err){
+            res.redirect('/user/shop');
+        } else {
+            res.redirect('/user/shop');
+        }
+    });
+});
+
+router.delete('/shop/:id',middleware.isLoggedIn,middleware.checkCatalogOwner, function(req, res){
+    catalog.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect('/user/shop');
+        } else {
+            res.redirect('/user/shop');
+        }
+    });
+});
+
+router.get("/shop/:id/edit",middleware.isLoggedIn, middleware.checkCatalogOwner, function(req, res){
+    catalog.findById(req.params.id,function(err, foundcatalog){
+        if(err){
+            console.log(err);
+        } else {   
+            res.render("edit.ejs", {catalog: foundcatalog});
+        }
+    });
+});
 
 
 
+router.get('/test',middleware.isLoggedIn, function(req, res){
+    catalog.find({seller_id:req.user._id}, function(err, allcatalog){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('test.ejs', {catalog: allcatalog});
+        }
+    });
+});
+router.get("/edit_address",middleware.isLoggedIn, function(req, res){    
+            res.render("edit_address.ejs");
+});
+router.put('/',middleware.isLoggedIn,function(req, res){
+        console.log(req.body.address);
+        console.log(req.body.province);
+        console.log(req.body.district);
+        console.log(req.body.postcode);
+    user.updateMany({ $set: {address_information:
+        {
+            address:req.body.address,
+            province:req.body.province,
+            district:req.body.district,
+            postcode:req.body.postcode,
+        }}},function(err,updateuser){
+        if(err){
+            console.log("000000");
+            res.redirect('/user');
+        } else {
+            console.log("11111");
+            res.redirect('/user');
+        }
+    });
+});
+
+router.put('/test/:id',middleware.isLoggedIn, middleware.checkCatalogOwner,upload.single('image'),function(req, res){
+    catalog.findByIdAndUpdate(req.params.id,{ $set: { number: req.body.number }},function(err,updatecatalog){
+        if(err){
+            res.redirect('/user/test');
+        } else {
+            res.redirect('/user/test');
+        }
+    });
+});
 module.exports = router;

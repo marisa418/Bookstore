@@ -855,6 +855,7 @@ router.post('/', middleware.isLoggedIn,upload.single('image'), function(req, res
     req.body.catalog.image = '/uploads/'+ req.file.filename;
     req.body.catalog.seller_id = req.user._id;
     req.body.catalog.seller_name= req.user.username;
+    req.body.catalog.date= new Date();;
     //var newcatalog = {name:name, image:image, desc: desc,type: type, author: author};
     catalog.create(req.body.catalog,function(err, newlyCreated){
         if(err){
@@ -883,39 +884,6 @@ router.get("/:id", function(req, res){
     
 });
 
-
-router.get("/:id/edit", middleware.checkCatalogOwner, function(req, res){
-    catalog.findById(req.params.id,function(err, foundcatalog){
-        if(err){
-            console.log(err);
-        } else {   
-            res.render("edit.ejs", {catalog: foundcatalog});
-        }
-    });
-});
-    
-router.put('/:id', middleware.checkCatalogOwner,upload.single('image'),function(req, res){
-    if(req.file){
-        req.body.catalog.image = '/uploads/' + req.file.filename;
-    }
-    catalog.findByIdAndUpdate(req.params.id,req.body.catalog,function(err,updatecatalog){
-        if(err){
-            res.redirect('/user/shop');
-        } else {
-            res.redirect('/user/shop');
-        }
-    });
-});
-
-router.delete('/:id',  middleware.checkCatalogOwner, function(req, res){
-    catalog.findByIdAndRemove(req.params.id, function(err){
-        if(err){
-            res.redirect('/user/shop');
-        } else {
-            res.redirect('/user/shop');
-        }
-    });
-});
 
 
 router.post("/:id", middleware.isLoggedIn, function(req, res){
