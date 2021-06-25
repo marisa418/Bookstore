@@ -20,12 +20,8 @@
             <div class="mb-1">
               <div class="col-md-10">
                 <label  class="form-label">รูปภาพ</label>
-               
-               <% if(value==undefined){ %>
-                  <input type='file' class="form-control" name='image'   placeholder='<%= catalog.image%>' value="<%= catalog.image %>"> 
-                  <% } else {%>
-                    <input type='file' class="form-control" name='image' accept="image/*" > 
-                    <% } %>
+              
+                    <input type='file' class="form-control" name='image' accept="image/*" value="<%= catalog.image %>" placeholder='<%= catalog.image%>'> 
               </div>
             </div>
             <div class="mb-1">
@@ -69,7 +65,7 @@
             <div class="mb-1">
               <div class="col-md-10">
             <label  class="form-label">โปรดเลือกประเภทของหนังสือ</label>
-            <select class="form-select" aria-label="Default select example" name='catalog[type]' placeholder='<%= catalog.type %>' value="<%= catalog.type %>">
+            <select class="form-select" aria-label="Default select example" name='catalog[type]'>
                 <option value="comedy">นิยายตลกขบขัน</option>
                 <option value="action">นิยายต่อสู้ </option>
                 <option value="romance">นิยายรักโรแมนติก</option>

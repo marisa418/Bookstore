@@ -98,17 +98,31 @@ router.get("/edit_address",middleware.isLoggedIn, function(req, res){
             res.render("edit_address.ejs");
 });
 router.put('/',middleware.isLoggedIn,function(req, res){
-        console.log(req.body.address);
-        console.log(req.body.province);
-        console.log(req.body.district);
-        console.log(req.body.postcode);
-    user.updateMany({ $set: {address_information:
+    console.log(req.body.check_data);
+    if(req.body.check_data=="address_info"){
+    user.findByIdAndUpdate(req.user._id,{ $set: {address_information:
         {
             address:req.body.address,
             province:req.body.province,
             district:req.body.district,
             postcode:req.body.postcode,
         }}},function(err,updateuser){
+        if(err){
+            res.redirect('/user');
+        } else {
+            res.redirect('/user');
+        }
+    });
+}
+if(req.body.check_data=="user_info"){
+    user.findByIdAndUpdate(req.user._id,{ $set:
+        {
+            first_name:req.body.first_name,
+            last_name:req.body.last_name,
+            email:req.body.email,
+            phone:req.body.phone,
+            gender:req.body.gender,
+        }},function(err,updateuser){
         if(err){
             console.log("000000");
             res.redirect('/user');
@@ -117,6 +131,7 @@ router.put('/',middleware.isLoggedIn,function(req, res){
             res.redirect('/user');
         }
     });
+}
 });
 
 router.put('/test/:id',middleware.isLoggedIn, middleware.checkCatalogOwner,upload.single('image'),function(req, res){

@@ -27,10 +27,10 @@ router.post('/register', function(req, res){
         gender: req.body.gender,
         address_information:
     [{
-        address: req.body.address,
-        province:req.body.province ,
-        district:req.body.district,
-        postcode:req.body.postcode,
+        address:"",
+        province:"",
+        district:"",
+        postcode:"",
     }]
     });
     User.register(newUser, req.body.password, function(err, user){

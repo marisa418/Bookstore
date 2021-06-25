@@ -1,9 +1,9 @@
 <%- include('partials/head.ejs') %>
         <div class="row">
-        <div id="ro01" class="col-sm-3  px-5 py-2">
+        <div id="ro01" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 px-5 py-2" width="50px">
            <%- include('infouser/manu_user.ejs') %> 
             </div>
-        <div id="ro02" class="col-sm-9 py-2">
+        <div id="ro02" class="col-lg-9 col-md-9 col-sm-9 col-xs-9 py-2">
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="/user/shop"> <font size='3'> <%= currentUser.username %></font></a></li>
@@ -13,10 +13,10 @@
               <div class="images">
                 <div class="album py bg-light" >
                     <div class="container">
-                      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 ">
+                      <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         
                         <% catalog.forEach(function(catalog){  %>
-                        <div class="col-xl-2 col-sm-12">
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                           <div class="card shadow-sm showimg">
                               <div>
                             <a href="/catalog/<%= catalog._id %>"><img src='<%= catalog.image %>' class='card-img-top' width="100px" height="220px"></a>
@@ -42,7 +42,7 @@
                             </div>
                             <form action='/user/test/<%= catalog._id %>?_method=PUT'  method='POST' enctype="multipart/form-data">
                                 <input type='text' class="form-control" name='number' id="number" placeholder='<%= catalog.number %>' value="<%= catalog.number %>" >
-                             <div class="hid">
+                             <div class="hidden">
                                 <input type='text'class="form-control"  name='catalog[author]' placeholder='<%= catalog.author %>' value="<%= catalog.author%>">
                                 <input type='text' class="form-control" name='catalog[publishing]' placeholder='<%= catalog.publishing %>' value="<%= catalog.publishing%>">
                                 <input type='text'class="form-control"  name='catalog[num_pages]' placeholder='<%= catalog.num_pages %>' value="<%= catalog.num_pages %>" >
