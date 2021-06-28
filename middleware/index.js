@@ -1,4 +1,5 @@
 var catalog = require('../models/catalog');
+var catalog = require('../models/user');
 var middlewareObj = {};
 
 middlewareObj.checkCatalogOwner = function(req, res, next){
@@ -8,7 +9,7 @@ middlewareObj.checkCatalogOwner = function(req, res, next){
                 
                 res.redirect('back');
             } else {
-                if(foundcatalog.seller_id==req.user._id || req.user.isAdmin) {
+                if(foundcatalog.seller_id==req.user._id ) {
                     next();
                 } else {
                     
@@ -23,13 +24,17 @@ middlewareObj.checkCatalogOwner = function(req, res, next){
 }
 
 
-
-
 middlewareObj.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
     res.redirect('/login');
+}
+middlewareObj.isLoggedInAdmin = function(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/login_admin');
 }
 
 module.exports = middlewareObj;

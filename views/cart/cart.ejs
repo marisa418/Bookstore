@@ -1,0 +1,29 @@
+<%- include('../partials/head.ejs') %>
+
+        <div class="row" >
+          <div class="col-sm-3 px-5 py-2" >
+            <%- include('../partials/manu_user.ejs') %>
+          </div>
+          <div class="col-sm-5 py-2">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page"><font size='3'>ตระกร้าสินค้า</font></li>
+              </ol>
+            </nav>
+            <%- include('showcart.ejs') %>
+          </div>
+          <div class="col-sm-4 py-5"> 
+            
+            <h6 class="">Location</h6> 
+            <% user.forEach(function(user){  %> 
+            <p class="mb-0"><font size="3px"><%= user.first_name %>&nbsp;&nbsp;<%= user.last_name %></font></p>
+            <p><font size="3px"><%= user.address_information.address %>,<%= user.address_information.province %>,<%= user.address_information.district %>,<%= user.address_information.postcode %></font></p>
+            <% }) %>
+            <h6> Order Summary</h6>
+            <p class="mb-1"><font size="3px"> Subtotal (<%= item %> items)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;฿&nbsp;<%= total_price %></font></p>  
+            <P class="mb-1"><font size="3px">Shipping Fee </font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <font size="3px" color="ff0000">Free</font></P>
+            <p><font size="3px">Total</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font size="3px">฿&nbsp;<%= total_price %></font></p>
+          <button>Proceed to checkout</button>
+          </div>
+        </div>
+<%- include('../partials/footer.ejs') %>

@@ -15,3 +15,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   height: auto;
 
 }
+.form-popup_confirm {
+  display: none;
+  background-color: rgb(255, 255, 255);
+}

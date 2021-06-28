@@ -29,7 +29,7 @@ router.get('/',middleware.isLoggedIn,  function(req, res){
         if(err){
             console.log(err);
         } else {
-            res.render('user.ejs', {user: alluser});
+            res.render('user/user.ejs', {user: alluser});
         }
     });
         
@@ -41,16 +41,16 @@ router.get('/shop',middleware.isLoggedIn, function(req, res){
         if(err){
             console.log(err);
         } else {
-            res.render('shop.ejs', {catalog: allcatalog});
+            res.render('user/shop.ejs', {catalog: allcatalog});
         }
     });
 });
 router.get('/purchase_history',middleware.isLoggedIn, function(req, res){
-            res.render('purchase_history.ejs');
+            res.render('user/purchase_history.ejs');
 
 });
 
-router.put('/shop/:id',middleware.isLoggedIn,middleware.checkCatalogOwner,upload.single('image'),function(req, res){
+router.put('/shop/:id',middleware.isLoggedIn,upload.single('image'),function(req, res){
     if(req.file){
         req.body.catalog.image = '/uploads/' + req.file.filename;
     }
@@ -63,7 +63,7 @@ router.put('/shop/:id',middleware.isLoggedIn,middleware.checkCatalogOwner,upload
     });
 });
 
-router.delete('/shop/:id',middleware.isLoggedIn,middleware.checkCatalogOwner, function(req, res){
+router.delete('/shop/:id',middleware.isLoggedIn, function(req, res){
     catalog.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect('/user/shop');
@@ -73,27 +73,18 @@ router.delete('/shop/:id',middleware.isLoggedIn,middleware.checkCatalogOwner, fu
     });
 });
 
-router.get("/shop/:id/edit",middleware.isLoggedIn, middleware.checkCatalogOwner, function(req, res){
+router.get("/shop/:id/edit",middleware.isLoggedIn, function(req, res){
     catalog.findById(req.params.id,function(err, foundcatalog){
         if(err){
             console.log(err);
         } else {   
-            res.render("edit.ejs", {catalog: foundcatalog});
+            res.render("user/edit.ejs", {catalog: foundcatalog});
         }
     });
 });
 
 
 
-router.get('/test',middleware.isLoggedIn, function(req, res){
-    catalog.find({seller_id:req.user._id}, function(err, allcatalog){
-        if(err){
-            console.log(err);
-        } else {
-            res.render('test.ejs', {catalog: allcatalog});
-        }
-    });
-});
 router.get("/edit_address",middleware.isLoggedIn, function(req, res){    
             res.render("edit_address.ejs");
 });
@@ -134,13 +125,4 @@ if(req.body.check_data=="user_info"){
 }
 });
 
-router.put('/test/:id',middleware.isLoggedIn, middleware.checkCatalogOwner,upload.single('image'),function(req, res){
-    catalog.findByIdAndUpdate(req.params.id,{ $set: { number: req.body.number }},function(err,updatecatalog){
-        if(err){
-            res.redirect('/user/test');
-        } else {
-            res.redirect('/user/test');
-        }
-    });
-});
 module.exports = router;

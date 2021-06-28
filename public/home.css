@@ -1,0 +1,14 @@
+.bg_home01{
+    background-color: rgb(30, 97, 160);
+}
+.bg_home02{
+    background-color: rgb(7, 0, 66);
+}
+.bg_home03{
+    border-bottom: 6px solid rgb(85, 85, 85);
+    background-color: rgb(255, 255, 255);
+}
+.foot01{
+    background-color: rgb(255, 255, 255);
+    height: 200px;
+}

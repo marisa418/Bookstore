@@ -8,15 +8,15 @@ var UserSchema = new mongoose.Schema({
         phone:String,
         first_name:String,
         last_name:String,
-        gender:String,
+        gender:String,       
     address_information:
         {
         address: String,
         province: String,
         district:String,
         postcode:String,
-        }
-    
+        },
+ isAdmin:{type:Boolean, default:false}   
 });
 
 UserSchema.plugin(passportLocalMongoose);

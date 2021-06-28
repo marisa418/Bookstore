@@ -33,7 +33,7 @@ router.get('/', function(req, res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -42,7 +42,7 @@ router.get('/', function(req, res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -51,7 +51,7 @@ router.get('/', function(req, res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -60,7 +60,7 @@ router.get('/', function(req, res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -71,7 +71,7 @@ router.get('/', function(req, res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -80,7 +80,7 @@ router.get('/', function(req, res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -89,7 +89,7 @@ router.get('/', function(req, res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -98,7 +98,7 @@ router.get('/', function(req, res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -116,7 +116,7 @@ router.get('/comedy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -125,7 +125,7 @@ router.get('/comedy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -134,7 +134,7 @@ router.get('/comedy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -143,7 +143,7 @@ router.get('/comedy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -154,7 +154,7 @@ router.get('/comedy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -163,7 +163,7 @@ router.get('/comedy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -172,7 +172,7 @@ router.get('/comedy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -181,7 +181,7 @@ router.get('/comedy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -200,7 +200,7 @@ router.get('/action',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -209,7 +209,7 @@ router.get('/action',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -218,7 +218,7 @@ router.get('/action',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -227,7 +227,7 @@ router.get('/action',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -238,7 +238,7 @@ router.get('/action',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -247,7 +247,7 @@ router.get('/action',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -256,7 +256,7 @@ router.get('/action',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -265,7 +265,7 @@ router.get('/action',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -282,7 +282,7 @@ router.get('/romance',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -291,7 +291,7 @@ router.get('/romance',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -300,7 +300,7 @@ router.get('/romance',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -309,7 +309,7 @@ router.get('/romance',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -320,7 +320,7 @@ router.get('/romance',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -329,7 +329,7 @@ router.get('/romance',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -338,7 +338,7 @@ router.get('/romance',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -347,7 +347,7 @@ router.get('/romance',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -364,7 +364,7 @@ router.get('/boylove',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -373,7 +373,7 @@ router.get('/boylove',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -382,7 +382,7 @@ router.get('/boylove',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -391,7 +391,7 @@ router.get('/boylove',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -402,7 +402,7 @@ router.get('/boylove',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -411,7 +411,7 @@ router.get('/boylove',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -420,7 +420,7 @@ router.get('/boylove',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -429,7 +429,7 @@ router.get('/boylove',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -446,7 +446,7 @@ router.get('/scifi',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -455,7 +455,7 @@ router.get('/scifi',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -464,7 +464,7 @@ router.get('/scifi',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -473,7 +473,7 @@ router.get('/scifi',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -484,7 +484,7 @@ router.get('/scifi',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -493,7 +493,7 @@ router.get('/scifi',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -502,7 +502,7 @@ router.get('/scifi',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -511,7 +511,7 @@ router.get('/scifi',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -528,7 +528,7 @@ router.get('/fantasy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -537,7 +537,7 @@ router.get('/fantasy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -546,7 +546,7 @@ router.get('/fantasy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -555,7 +555,7 @@ router.get('/fantasy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -566,7 +566,7 @@ router.get('/fantasy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -575,7 +575,7 @@ router.get('/fantasy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -584,7 +584,7 @@ router.get('/fantasy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -593,7 +593,7 @@ router.get('/fantasy',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -610,7 +610,7 @@ router.get('/thriller',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -619,7 +619,7 @@ router.get('/thriller',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -628,7 +628,7 @@ router.get('/thriller',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -637,7 +637,7 @@ router.get('/thriller',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -648,7 +648,7 @@ router.get('/thriller',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -657,7 +657,7 @@ router.get('/thriller',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -666,7 +666,7 @@ router.get('/thriller',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -675,7 +675,7 @@ router.get('/thriller',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -692,7 +692,7 @@ router.get('/suspense',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -701,7 +701,7 @@ router.get('/suspense',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -710,7 +710,7 @@ router.get('/suspense',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -719,7 +719,7 @@ router.get('/suspense',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -730,7 +730,7 @@ router.get('/suspense',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -739,7 +739,7 @@ router.get('/suspense',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -748,7 +748,7 @@ router.get('/suspense',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -757,7 +757,7 @@ router.get('/suspense',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -774,7 +774,7 @@ router.get('/historical',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -783,7 +783,7 @@ router.get('/historical',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -792,7 +792,7 @@ router.get('/historical',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -801,7 +801,7 @@ router.get('/historical',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -812,7 +812,7 @@ router.get('/historical',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -821,7 +821,7 @@ router.get('/historical',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -830,7 +830,7 @@ router.get('/historical',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -839,7 +839,7 @@ router.get('/historical',function(req,res){
                  if(err){    
                  console.log(err);
                  } else {
-                     res.render(page+'.ejs', {catalog:allcatalog});
+                     res.render('catalog/'+page+'.ejs', {catalog:allcatalog});
                     }
             });
         }
@@ -848,7 +848,7 @@ router.get('/historical',function(req,res){
 
 
 router.get('/new',middleware.isLoggedIn,function(req,res){
-    res.render('new.ejs');
+    res.render('catalog/new.ejs');
 });
 
 router.post('/', middleware.isLoggedIn,upload.single('image'), function(req, res){
@@ -873,10 +873,10 @@ router.get("/:id", function(req, res){
         } else {
             comment.find({book_id:req.params.id},function(err, allcomment){
                 if(err){
-                    res.render('show.ejs', {comment: allcomment,catalog:foundcatalog});
+                    res.render('catalog/show.ejs', {comment: allcomment,catalog:foundcatalog});
                     console.log(err);
                 } else {
-                    res.render('show.ejs', {comment: allcomment,catalog:foundcatalog});
+                    res.render('catalog/show.ejs', {comment: allcomment,catalog:foundcatalog});
                  }                        
             }); 
         }

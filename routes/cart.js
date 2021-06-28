@@ -2,13 +2,18 @@ var express = require('express'),
     router  = express.Router(),
     middleware = require('../middleware'),
     catalog  = require('../models/catalog'),
+    user = require('../models/user'),
     cart  = require('../models/cart');
 
     
 
 router.get('/', middleware.isLoggedIn, function(req, res){  
     var purchaser_id = req.user._id;
-    cart.find({purchaser_id:purchaser_id},function(err, allcart){
+    user.find({_id:req.user._id }, function(err, alluser){
+        if(err){
+            console.log(err);
+        } else {
+            cart.find({purchaser_id:purchaser_id},function(err, allcart){
         if(err){
             console.log(err);
         } else {
@@ -16,11 +21,14 @@ router.get('/', middleware.isLoggedIn, function(req, res){
         if(err){
             console.log(err);
         } else {
-                res.render('cart.ejs', {catalog: allcatalog,cart: allcart});
+                res.render('cart/cart.ejs', {catalog: allcatalog,cart: allcart,user: alluser});
          }                      
     });  
          }                        
-    });    
+    }); 
+        }
+    });
+       
 });
         
 router.get("/:id", function(req, res){
@@ -29,7 +37,7 @@ router.get("/:id", function(req, res){
             console.log(err);
         } else {
             
-            res.render("show.ejs", {cart: foundcart});
+            res.render("catalog/show.ejs", {cart: foundcart});
         }
     });
 });
